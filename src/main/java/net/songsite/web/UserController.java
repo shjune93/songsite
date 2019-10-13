@@ -17,16 +17,16 @@ import net.songsite.domain.User;
 import net.songsite.domain.UserRepository;
 
 @Controller
-@RequestMapping("/users")
+@RequestMapping("users")
 public class UserController {
 	private java.util.List<User> users=new ArrayList<>();
 	
 	@Autowired
 	private UserRepository userRepository;
 	
-	@GetMapping("/form")
+	@GetMapping("form")
 	public String form(){
-		return "/user/form";
+		return "user/form";
 	}
 	
 	@PostMapping("")
@@ -34,20 +34,20 @@ public class UserController {
 		System.out.println("user"+user);
 		//users.add(user);
 		userRepository.save(user);
-		return "redirect:/users";
+		return "redirect:users";
 	}
 	
 	@GetMapping("")
 	public String list(Model model) {
 		model.addAttribute("users",userRepository.findAll());
-		return "/user/list";
+		return "user/list";
 	}
 	
-	@GetMapping("/{id}/form") // 밑에 id가 주소의 id
+	@GetMapping("{id}/form") // 밑에 id가 주소의 id
 	public String updateForm(@PathVariable Long id,Model model){
 		User user=userRepository.findById(id).get();
 		model.addAttribute("user",user);
-		return "/user/updateForm";
+		return "user/updateForm";
 	}
 	
 	@PostMapping("/{id}")
