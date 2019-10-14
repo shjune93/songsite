@@ -34,13 +34,17 @@ public class UserController {
 	public String login(String userId,	String password, HttpSession session) {
 		User user=userRepository.findByUserId(userId);
 		if (user == null) {
+			System.out.println("Login Failue!");
 			return "redirect:/users/loginForm";
 			
 		}
 		if(password.equals(user.getPassword())) {
+
+			System.out.println("Login Failue!");
 			return "redirect:/users/loginForm";
 		}
 		
+		System.out.println("Login Success!");
 		session.setAttribute("user", user);
 		
 		return "redirect:/";
@@ -72,12 +76,18 @@ public class UserController {
 		return "user/updateForm";
 	}
 	
-	@PostMapping("/{id}")
+	@PostMapping("{id}")
 	public String update(@PathVariable Long id,User newUser) {
 		User user=userRepository.findById(id).get();
 		user.update(newUser);
 		userRepository.save(user);
 		return "redirect:/users";
+	}
+	
+	@GetMapping("logout")
+	public String logout(HttpSession session) {
+		session.removeAttribute("user");
+		return "redirect:/";
 	}
 	
 	
