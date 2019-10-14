@@ -11,7 +11,14 @@ public class User {
 	@GeneratedValue
 	private Long id;
 	
-	@Column(nullable=false, length=20)
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	@Column(nullable=false, length=20 ,unique=true)
 	private String userId;
 	private String password;
 	private String name;
