@@ -20,6 +20,14 @@
 	</properties>
 
 	<dependencies>
+	
+	<!-- 별도의 톰켓설정 -->
+	<dependency>
+    <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-tomcat</artifactId>
+      <scope>provided</scope>
+</dependency>
+	
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-mustache</artifactId>
@@ -77,4 +85,5 @@
 		</plugins>
 	</build>
 
+	<packaging>war</packaging>
 </project>
