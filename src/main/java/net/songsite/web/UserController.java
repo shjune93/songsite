@@ -75,8 +75,8 @@ public class UserController {
 	@GetMapping("{id}/form") // 밑에 가 @PathVariable Long id 주소의 id
 	public String updateForm(@PathVariable Long id,Model model, HttpSession session){
 		Object tempUser=session.getAttribute("sessionedUser");
-		if(HttpSessionUtils.isLoginUser(session)) {
-			return "redirect:users/loginForm";
+		if(!HttpSessionUtils.isLoginUser(session)) {
+			return "redirect:/users/loginForm";
 		}
 		
 		User sessionedUser =HttpSessionUtils.getUserFromSession(session);
