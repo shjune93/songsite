@@ -57,15 +57,26 @@ public class QuestionController {
 	
 	@GetMapping("{id}/form")
 	public String updateForm(@PathVariable Long id ,Model model,HttpSession session) {
-		try {
-			Question question=questionRepository.findById(id).get();
-			hasPermission(session,question);
-			model.addAttribute("question",question);
-			return "qna/updateForm";
-		} catch (IllegalStateException e) {
-			model.addAttribute("errorMessage",e.getMessage());
-			return "/user/login";//한번더 거치면 에러 메세지 사라져서 바로 이동해야됨
+//		try {
+//			Question question=questionRepository.findById(id).get();
+//			hasPermission(session,question);
+//			model.addAttribute("question",question);
+//			return "qna/updateForm";
+//		} catch (IllegalStateException e) {
+//			model.addAttribute("errorMessage",e.getMessage());
+//			return "/user/login";//한번더 거치면 에러 메세지 사라져서 바로 이동해야됨
+//		} //Exception을 통한 에러메세지
+		
+		
+		//
+		Question question=questionRepository.findById(id).get();
+		Result result=valid(session,question);
+		if(!result.isValid()) {
+			model.addAttribute("errorMessage",result.getErrorMessage());
+			return "/user/login";
 		}
+		model.addAttribute("question",question);
+		return "/qna/updateForm";
 	}
 	
 	@PutMapping("{id}")
@@ -112,6 +123,20 @@ public class QuestionController {
 			throw new IllegalStateException("자신이 쓴 글만 수정,삭제 가능합니다.");
 		}
 		return true;
+		
+	}
+	
+	private Result valid(HttpSession session,Question question) {
+		if(!HttpSessionUtils.isLoginUser(session)) {
+			return Result.fail("로그인이 필요합니다.");
+			 //throw new IllegalStateException("로그인이 필요합니다.");
+		}
+		User loginUser=HttpSessionUtils.getUserFromSession(session);
+		if(!question.isSameWriter(loginUser)) {
+			return Result.fail("자신이 쓴 글만 수정,삭제 가능합니다.");
+			//throw new IllegalStateException("자신이 쓴 글만 수정,삭제 가능합니다.");
+		}
+		return Result.ok();
 		
 	}
 }
