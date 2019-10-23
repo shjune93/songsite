@@ -33,6 +33,7 @@ public class ApiAnswerController {
 		User loginUser=HttpSessionUtils.getUserFromSession(session);
 		Question question=questionRepository.findById(questionId).get();
 		Answer answer=new Answer(loginUser,question,contents);
+		question.addAnswer();//답변숫자 늘려줌
 		return answerRepository.save(answer);
 		//return String.format("redirect:/questions/%d", questionId);
 	}
@@ -49,6 +50,9 @@ public class ApiAnswerController {
 		}
 		
 		answerRepository.deleteById(id);
+		Question question=questionRepository.findById(questionId).get();
+		question.deleteAnswer();//답변숫자 줄여줌
+		questionRepository.save(question);
 		return Result.ok();
 		
 	}
