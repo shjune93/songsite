@@ -5,11 +5,28 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 public class User {
 	@Id
 	@GeneratedValue
+	@JsonProperty
 	private Long id;
+	
+
+
+	@Column(nullable=false, length=20 ,unique=true)
+	@JsonProperty
+	private String userId;
+	@JsonIgnore
+	private String password;
+	@JsonProperty
+	private String name;
+	@JsonProperty
+	private String email;
+	
 	
 	public Long getId() {
 		return id;
@@ -17,13 +34,6 @@ public class User {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	@Column(nullable=false, length=20 ,unique=true)
-	private String userId;
-	private String password;
-	private String name;
-	private String email;
-	
 	
 	public String getUserId() {
 		return userId;
