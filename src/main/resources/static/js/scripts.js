@@ -10,6 +10,34 @@ String.prototype.format = function() {
 
 $(".answer-write input[type=submit]").click(addAnswer);
 
+$(".link-delete-article").click(deleteAnswer);
+	
+
+function deleteAnswer(e){
+	e.preventDefault();
+	var deleteBtn=$(this);
+	var url=$(this).attr("href");
+	console.log("url : " +url);
+	
+	$.ajax({
+		type:'delete',
+		url:url,
+		dataType:'json',
+		error:function(xhr,status){
+			console.log("error");
+		},
+		success:function(data,status){
+			console.log(data);
+			if(data.valid){
+				deleteBtn.closest("article").remove();
+			}else{
+				alert(data.errorMessage);
+			}
+			
+		}
+	});
+}
+
 function addAnswer(e){
 	e.preventDefault();
 	console.log("click me");
@@ -42,9 +70,10 @@ function onSuccess(data,status){
 			data.writer.userId,
 			data.formattedCreateDate,
 			data.contents,
-			data.id,
+			data.question.id,
 			data.id
-			)
+			
+			);
 	$(".qna-comment-slipp-articles").prepend(template);
 	
 	$("textarea[name=contents]").val("");

@@ -83,7 +83,9 @@ public class Answer {
 				+ "]";
 	}
 	
-	
+	public boolean isSameWriter(User loginUser) {
+		return loginUser.equals(this.writer);
+	}
 	
 	
 }
