@@ -24,7 +24,7 @@
                       <div class="article-header-text">
                           <a href="/users/92/kimmunsu" class="article-author-name">{{writer.userId}}</a>
                           <a href="/questions/413" class="article-header-time" title="퍼머링크">
-                              {{formattedCreateDate}}
+                              {{FormattedCreateDate}}
                               <i class="icon-link"></i>
                           </a>
                       </div>
@@ -52,7 +52,7 @@
 
               <div class="qna-comment">
                   <div class="qna-comment-slipp">
-                      <p class="qna-comment-count"><strong>2</strong>개의 의견</p>
+                      <p class="qna-comment-count"><strong>{{question.countOfAnswer}}</strong>개의 의견</p>
                       <div class="qna-comment-slipp-articles">
 						{{#answers}}
                           <article class="article" id="answer-1405">
@@ -63,7 +63,7 @@
                                   <div class="article-header-text">
                                       <a href="/users/1/자바지기" class="article-author-name">{{writer.userId}}</a>
                                       <a href="#answer-1434" class="article-header-time" title="퍼머링크">
-                                       {{formattedCreateDate}}
+                                       {{FormattedCreateDate}}
                                       </a>
                                   </div>
                               </div>
