@@ -16,7 +16,7 @@ import javax.persistence.OrderBy;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
+//@JsonProperty getter/setter 의 이름을 property 와 다른 이름을 사용할 수 있도록 설정한다. Database 를 자바 클래스로 매핑하는데 DB의 컬럼명이 알기 어려울 경우등에 유용하게 사용할 수 있다.
 
 @Entity
 public class Question extends AbstractEntity{

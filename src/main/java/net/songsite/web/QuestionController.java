@@ -67,8 +67,6 @@ public class QuestionController {
 //			return "/user/login";//한번더 거치면 에러 메세지 사라져서 바로 이동해야됨
 //		} //Exception을 통한 에러메세지
 		
-		
-		//
 		Question question=questionRepository.findById(id).get();
 		Result result=valid(session,question);
 		if(!result.isValid()) {
