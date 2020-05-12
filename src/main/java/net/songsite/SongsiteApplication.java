@@ -17,7 +17,7 @@ public class SongsiteApplication extends SpringBootServletInitializer {
 	
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-		return builder.sources(SongsiteApplication.class)
+		return builder.sources(SongsiteApplication.class);
 	}
 	
 	
