@@ -12,6 +12,7 @@
 	<groupId>net.songsite</groupId>
 	<artifactId>songsite</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 	<name>songsite</name>
 	<description>SONGSITE QnA</description>
 
