@@ -66,6 +66,13 @@
 			<version>1.4.199</version>
 
 		</dependency>
+		<!-- marked the embedded servlet container as provided --> 
+		<dependency> 
+			<groupId>org.springframework.boot</groupId> 
+			<artifactId>spring-boot-starter-tomcat</artifactId> 
+			<scope>provided</scope> 
+		</dependency>
+
 
 		<!-- swagger -->
 
